@@ -203,6 +203,30 @@ cat >> input.nml <<EOF
   imp_physics  = ${imp_physics:-"99"}	! CROW configured
 EOF
 
+if [ $CCPP_SUITE = "FV3_GFS_v15p2_coupled_GF" ]; then
+  cat >> input.nml << EOF
+  oz_phys      = .false.
+  oz_phys_2015 = .true.
+EOF
+fi
+
+if [ $CCPP_SUITE = "FV3_GFS_v15p2_coupled_MYNNPBL" ]; then
+  cat >> input.nml << EOF
+  oz_phys      = .false.
+  oz_phys_2015 = .true.
+  do_mynnedmf = .true.
+EOF
+fi
+
+if [ $CCPP_SUITE = "FV3_GFS_v15p2_coupled_Thompson" ]; then
+  cat >> input.nml << EOF
+  oz_phys      = .false.
+  oz_phys_2015 = .true.
+  ltaerosol = .true.
+  ttendlim = 0.005
+EOF
+fi
+
 
 if [ $CCPP_SUITE = "FV3_GFS_v15p2_coupled" ]; then
   cat >> input.nml << EOF

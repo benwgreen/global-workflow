@@ -204,12 +204,20 @@ EOF
         ####
         # copy CCN_ACTIVATE.BIN for Thompson microphysics
         if [ $imp_physics -eq 8 ]; then
-        $NCP $FV3INP/CCN_ACTIVATE.BIN  CCN_ACTIVATE.BIN
-        ####
-        $NCP $FIX_AM/freezeH2O.dat .
-        $NCP $FIX_AM/qr_acr_qg.dat .
-        $NCP $FIX_AM/qr_acr_qs.dat .
-        sleep 60
+#        FV3INP_TEMP="/scratch1/NCEPDEV/nems/emc.nemspara/RT/NEMSfv3gfs/develop-20200917/INTEL/FV3_input_data_gsd" #Hera
+        FV3INP_TEMP="/home/Ben.Green/FV3_input_data_gsd" #Hera, safe
+        $NCP $FV3INP_TEMP/CCN_ACTIVATE.BIN CCN_ACTIVATE.BIN
+        $NCP $FV3INP_TEMP/freezeH2O.dat .
+        $NCP $FV3INP_TEMP/qr_acr_qg.dat .
+        $NCP $FV3INP_TEMP/qr_acr_qs.dat .
+        $NCP $FV3INP_TEMP/thompson_tables_precomp.sl .
+        sleep 1
+        #$NCP $FV3INP/CCN_ACTIVATE.BIN  CCN_ACTIVATE.BIN
+        #####
+        #$NCP $FIX_AM/freezeH2O.dat .
+        #$NCP $FIX_AM/qr_acr_qg.dat .
+        #$NCP $FIX_AM/qr_acr_qs.dat .
+        #sleep 60
         fi
 	$NLN $FIX_AM/${O3FORC}                         $DATA/global_o3prdlos.f77
 	$NLN $FIX_AM/${H2OFORC}                        $DATA/global_h2oprdlos.f77
