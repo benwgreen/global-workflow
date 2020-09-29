@@ -222,7 +222,7 @@ if [ $CCPP_SUITE = "FV3_GFS_v15p2_coupled_Thompson" ]; then
   cat >> input.nml << EOF
   oz_phys      = .false.
   oz_phys_2015 = .true.
-  ltaerosol = .true.
+  ltaerosol = .false.
   ttendlim = 0.005
 EOF
 fi
