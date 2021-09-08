@@ -3,7 +3,7 @@ set -eux
 
 # Build S2S by default
 APP="S2SW"
-CCPP_SUITES="FV3_GFS_v16,FV3_GFS_v16_coupled,FV3_GFS_v16_couplednsst,FV3_GFS_v16_coupled_nsstNoahmpUGWPv1,FV3_GFS_v16_coupled_nsstNoahmpUGWPv1_GF,FV3_GFS_v16_coupled_nsstNoahmpUGWPv1_MYNNPBL,FV3_GFS_v16_coupled_nsstNoahmpUGWPv1_Thompson"
+CCPP_SUITES="FV3_GFS_v16,FV3_GFS_v16_coupled,FV3_GFS_v16_couplednsst,FV3_GFS_v16_coupled_nsstNoahmpUGWPv1,FV3_GFS_v16_cpld_p7p0_GF,FV3_GFS_v16_cpld_p7p0_MYNNPBL,FV3_GFS_v16_cpld_p7p0_Thompson"
 
 while getopts "a" option; do
   case $option in
