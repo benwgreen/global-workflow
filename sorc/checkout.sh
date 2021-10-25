@@ -37,7 +37,7 @@ if [ ${COUPLED:-"NO"} = "NO" ]; then
   else 
     echo 'Skip.  Directory fv3gfs.fd already exists.'
   fi 
-else 
+else  
   if [[ ! -d ufs_coupled.fd ]] ; then
 #    git clone https://github.com/ufs-community/ufs-weather-model ufs_coupled.fd >> ${topdir}/checkout-ufs_coupled.log 2>&1
     git clone https://github.com/benwgreen/ufs-weather-model ufs_coupled.fd >> ${topdir}/checkout-ufs_coupled.log 2>&1
