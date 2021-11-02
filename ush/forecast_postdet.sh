@@ -285,8 +285,9 @@ FV3_GFS_postdet(){
 	####
 	# copy CCN_ACTIVATE.BIN for Thompson microphysics
 	if [ $imp_physics -eq 8 ]; then
-		$NCP $FV3INP/CCN_ACTIVATE.BIN  CCN_ACTIVATE.BIN
+		#$NCP $FV3INP/CCN_ACTIVATE.BIN  CCN_ACTIVATE.BIN
 		####
+                $NCP $FIX_AM/CCN_ACTIVATE.BIN CCN_ACTIVATE.BIN
 		$NCP $FIX_AM/freezeH2O.dat .
 		$NCP $FIX_AM/qr_acr_qg.dat .
 		$NCP $FIX_AM/qr_acr_qs.dat .
