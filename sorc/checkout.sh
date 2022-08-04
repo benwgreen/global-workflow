@@ -107,7 +107,7 @@ CHECKOUT_GDAS="NO"
 checkout_gtg="NO"
 checkout_wafs="NO"
 #ufs_model_hash="Prototype-P8"
-ufs_model_hash="p8default"
+ufs_model_hash="p8experiment"
 
 # Parse command line arguments
 while getopts ":chgum:o" option; do
