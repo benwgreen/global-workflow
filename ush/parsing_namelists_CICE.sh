@@ -21,7 +21,11 @@ if [[ "${warm_start}" = ".true." ]]; then
    local use_restart_time=".true."
 else
    local runtype="initial"
-   local use_restart_time=".false."
+    if [[ "${REPLAY_ICS:-NO}" == "YES" ]]; then
+        local use_restart_time=".true."
+    else
+        local use_restart_time=".false."
+    fi
 fi
 
 # Get correct MPI options for NPROC and grid
