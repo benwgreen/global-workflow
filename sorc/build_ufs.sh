@@ -7,6 +7,7 @@ cwd=$(pwd)
 APP="S2SWA"
 CCPP_SUITES="FV3_GFS_v17_p8_ugwpv1,FV3_GFS_v17_coupled_p8_ugwpv1,FV3_global_nest_v1"  # TODO: does the g-w need to build with all these CCPP_SUITES?
 PDLIB="ON"
+HYDRO="ON"
 
 while getopts ":da:fj:vw" option; do
   case "${option}" in
@@ -32,6 +33,7 @@ source "./tests/module-setup.sh"
 
 MAKE_OPT="-DAPP=${APP} -D32BIT=ON -DCCPP_SUITES=${CCPP_SUITES}"
 [[ ${PDLIB:-"OFF"} = "ON" ]] && MAKE_OPT+=" -DPDLIB=ON"
+[[ ${HYDRO:-"OFF"} = "ON" ]] && MAKE_OPT+=" -DHYDRO=ON"
 if [[ ${BUILD_TYPE:-"Release"} = "DEBUG" ]] ; then
     MAKE_OPT+=" -DDEBUG=ON"
 elif [[ "${FASTER:-OFF}" == ON ]] ; then
