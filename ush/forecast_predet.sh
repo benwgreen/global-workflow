@@ -279,6 +279,7 @@ FV3_predet(){
     phys_hydrostatic=".false."     # ignored when hydrostatic = T
     use_hydro_pressure=".false."   # ignored when hydrostatic = T
     make_nh=".false."              # running in hydrostatic mode
+    fast_tau_w_sec=0
   fi
 
   # Conserve total energy as heat globally
@@ -301,9 +302,16 @@ FV3_predet(){
     if [[ "${TYPE}" == "nh" ]]; then  # monotonic and non-hydrostatic
       hord_mt=${hord_mt_nh_mono:-"10"}
       hord_xx=${hord_xx_nh_mono:-"10"}
+      hord_dp=${hord_xx_nh_mono:-"10"}
     else  # monotonic and hydrostatic
       hord_mt=${hord_mt_hydro_mono:-"10"}
       hord_xx=${hord_xx_hydro_mono:-"10"}
+      hord_dp=${hord_xx_hydro_mono:-"10"}
+      kord_tm=${kord_tm_hydro_mono:-"-12"}
+      kord_mt=${kord_mt_hydro_mono:-"12"}
+      kord_wz=${kord_wz_hydro_mono:-"12"}
+      kord_tr=${kord_tr_hydro_mono:-"12"}
+
     fi
   else  # non-monotonic options
     d_con=${d_con_nonmono:-"1."}
@@ -311,9 +319,11 @@ FV3_predet(){
     if [[ "${TYPE}" == "nh" ]]; then  # non-monotonic and non-hydrostatic
       hord_mt=${hord_mt_nh_nonmono:-"5"}
       hord_xx=${hord_xx_nh_nonmono:-"5"}
+      hord_dp=-${hord_xx_nh_nonmono:-"5"}
     else # non-monotonic and hydrostatic
       hord_mt=${hord_mt_hydro_nonmono:-"10"}
       hord_xx=${hord_xx_hydro_nonmono:-"10"}
+      hord_dp=${hord_xx_hydro_nonmono:-"10"}
     fi
   fi
 
