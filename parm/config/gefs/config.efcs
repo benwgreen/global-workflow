@@ -79,5 +79,11 @@ else
     export ODA_INCUPD="False"
 fi
 export restart_interval="${restart_interval_enkfgfs:-12}"
+if [[ ${MARINE_COLD} == T ]]; then
+    export MOM6_INPUT_TEMPLATE="${HOMEgfs}/RUN/MOM_input_coldstart_${OCNRES}.IN"
+    export MOM6_RESTART_SETTING='n'
+    export MOM6_USE_LI2016="False" # set to False for restart reproducibility
+    export use_coldstart="true"
+fi
 
 echo "END: config.efcs"
