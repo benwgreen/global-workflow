@@ -7,6 +7,8 @@ base:
   DO_BUFRSND: "NO"
   DO_GEMPAK: "NO"
   DO_AWIPS: "NO"
+  FLTFILEGFS: "postxconfig-NT-GEFS.txt"
+  FLTFILEGFSF00: "postxconfig-NT-GEFS-F00.txt"
   KEEPDATA: "NO" 
   FHMAX_GFS: 120
   FHMAX_HF_GFS: 0
