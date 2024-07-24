@@ -8,7 +8,7 @@ APP="S2SWA"
 CCPP_SUITES="FV3_GFS_v17_p8_ugwpv1,FV3_GFS_v17_coupled_p8_ugwpv1,FV3_global_nest_v1"  # TODO: does the g-w need to build with all these CCPP_SUITES?
 PDLIB="ON"
 HYDRO="ON"
-BIT32="OFF"
+BIT32="ON"
 
 while getopts ":da:fj:vwp" option; do
   case "${option}" in
@@ -18,7 +18,7 @@ while getopts ":da:fj:vwp" option; do
     j) BUILD_JOBS="${OPTARG}";;
     v) export BUILD_VERBOSE="YES";;
     w) PDLIB="OFF";;
-    p) BIT32="ON";;
+    p) BIT32="OFF";;
     :)
       echo "[${BASH_SOURCE[0]}]: ${option} requires an argument"
       ;;
