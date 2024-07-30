@@ -16,7 +16,7 @@ export HPC_ACCOUNT=marine-cpu
 WORKDIR=/scratch2/NCEPDEV/stmp3/${USER}
 export TOPICDIR=/scratch2/NCEPDEV/stmp3/Neil.Barton/ICs
 
-export TOPEXPDIR=${WORKDIR}/RUNS
+export TOPEXPDIR=${WORKDIR}/RUNS/EXPDIR
 export TOPCOMROOT=${WORKDIR}/RUNS/COMROOT
 
 ########################
@@ -37,7 +37,7 @@ cd ${TOPEXPDIR}/${pslot}
 set +u
 source ${TOPEXPDIR}/${pslot}/config.base
 set -u
-ln -s ${RUNDIR} RUNDIR
+ln -s ${DATAROOT} DATAROOT
 ln -s ${HOMEgfs} GW-CODE
 ln -s ${HOMEgfs}/parm/config ORIG_CONFIGS
 ln -s ${COMROOT}/${PSLOT}/logs LOGS_COMROOT
