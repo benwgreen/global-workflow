@@ -4,10 +4,11 @@ base:
   DO_JEDIOCNVAR: "NO"
   DO_JEDISNOWDA: "NO"
   DO_MERGENSST: "NO"
-  FHMAX_GFS: 120
+  FHMAX_GFS: 2976
   FHMAX_HF_GFS: 0
   KEEPDATA: "NO"
   REPLAY_ICS: "YES"
+  DO_EXTRACTVARS: "NO"
   FLTFILEGFS: "postxconfig-NT-SFS.txt"
   FLTFILEGFSF00: "postxconfig-NT-SFS.txt"
   ACCOUNT: {{ 'HPC_ACCOUNT' | getenv }} 
