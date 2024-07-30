@@ -12,7 +12,7 @@ arguments:
   resdetocean: 1
   start: 'cold'
   gfs_cyc: 1
-  nens: 1
+  nens: 10
   comroot: {{ 'TOPCOMROOT' | getenv }}
   expdir: {{ 'TOPEXPDIR' | getenv }} 
   yaml: {{ HOMEgfs }}/RUN/SFS_options.yaml
