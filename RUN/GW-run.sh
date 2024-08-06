@@ -6,18 +6,20 @@ set -u
 ####################################
 # Code
 export IDATE=1994050100
-
 HOMEgfs=${1:-${PWD}/../}
 YAML=${2:-${HOMEgfs}/RUN/SFS.yaml}
-export HPC_ACCOUNT=marine-cpu
 
 ########################
-# for hera
-WORKDIR=/scratch2/NCEPDEV/stmp3/${USER}
-export TOPICDIR=/scratch2/NCEPDEV/stmp3/Neil.Barton/ICs
-
-export TOPEXPDIR=${WORKDIR}/RUNS/EXPDIR
-export TOPCOMROOT=${WORKDIR}/RUNS/COMROOT
+# Machine Specific and Personallized options
+machine=$(uname -n)
+ACCOUNT=marine-cpu
+if [[ ${machine:0:3} == hfe ]]; then
+    export TOPICDIR=/scratch2/NCEPDEV/stmp3/Neil.Barton/ICs
+    export RUNTESTS=/scratch2/NCEPDEV/stmp3/${USER}/RUNS
+elif [[ ${machine} == hercules* ]]; then 
+    export TOPICDIR=/work/noaa/marine/nbarton/ICs
+    export RUNTESTS=/work/noaa/marine/${USER}/RUNS
+fi
 
 ########################
 # Check Code
@@ -27,15 +29,18 @@ echo "HOMEgfs: ${HOMEgfs}"
 echo "YAML: ${YAML}"
 export pslot=$(basename ${YAML/.yaml*})
 
+########################
+# Set Up Experiment
 source ${HOMEgfs}/workflow/gw_setup.sh
-echo $HPC_ACCOUNT
+export HPC_ACCOUNT=${ACCOUNT}
 ${HOMEgfs}/workflow/create_experiment.py --yaml "${YAML}" 
 
 ################################################
 # Soft link items into EXPDIR for easier development
-cd ${TOPEXPDIR}/${pslot}
+TOPEXPDIR=${RUNTESTS}/EXPDIR/${pslot}
 set +u
-source ${TOPEXPDIR}/${pslot}/config.base
+source ${TOPEXPDIR}/config.base
+cd ${TOPEXPDIR}
 set -u
 ln -s ${DATAROOT} DATAROOT
 ln -s ${HOMEgfs} GW-CODE
