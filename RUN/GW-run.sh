@@ -8,6 +8,7 @@ set -u
 export IDATE=1994050100
 HOMEgfs=${1:-${PWD}/../}
 YAML=${2:-${HOMEgfs}/RUN/SFS.yaml}
+FULL_BASELINE=T # Run all forecasts
 
 ########################
 # Machine Specific and Personallized options
@@ -48,6 +49,24 @@ ln -s ${HOMEgfs}/parm/config ORIG_CONFIGS
 ln -s ${COMROOT}/${PSLOT}/logs LOGS_COMROOT
 ln -s ${HOMEgfs}/workflow/setup_xml.py . 
 ln -s ${HOMEgfs}/workflow/rocoto_viewer.py .
+
+################################################
+# All forecasts?
+if [[ ${FULL_BASELINE} == T ]]; then
+    f=${TOPEXPDIR}/*xml
+    echo ${f}
+    line=$(grep -n 'cycledef group' ${f} | cut -d: -f1) 
+    sed -i ${line}d $f
+    MONTHS="05 11"
+    for Y in $(seq 1994 2023); do
+        for M in ${MONTHS}; do 
+            text="<cycledef group="gefs">${Y}${M}010000 ${Y}${M}010000 24:00:00</cycledef>"
+            sed -i "${line} i   ${text}" ${f}
+            line=$(( line + 1))
+        done
+    done
+    exit 1
+fi
 
 ################################################
 # start rocotorun and add crontab
