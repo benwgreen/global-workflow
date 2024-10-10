@@ -260,6 +260,7 @@ EOF
   cat >> input.nml << EOF
   iovr         = ${iovr:-"3"}
   ltaerosol    = ${ltaerosol:-".false."}
+  mraerosol    = ${mraerosol:-".false."}
   lradar       = ${lradar:-".true."}
   ttendlim     = ${ttendlim:-"-999"}
   dt_inner     = ${dt_inner:-"${default_dt_inner}"}

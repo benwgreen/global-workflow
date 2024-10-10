@@ -176,14 +176,16 @@ case ${imp_physics} in
         ;;
     8)  # Thompson
         export ncld=2
-        export FIELD_TABLE="${PARMgfs}/ufs/fv3/field_table_thompson_noaero_tke${tbp}"
+        export FIELD_TABLE="${PARMgfs}/ufs/fv3/field_table_thompson_mraero_tke${tbp}"
         export nwat=6
 
         export cal_pre=".false."
         export random_clds=".false."
         export effr_in=".true."
-        export ltaerosol=".false."
-        export lradar=".true."
+	export ltaerosol=".false."
+        export mraerosol=".true."
+	if [[ "${mraerosol}" == .true. ]] ; then export dnats=2 ; fi
+	export lradar=".true."
         export ttendlim="-999"
         export dt_inner=$((DELTIM/2))
         export sedi_semi=.true.
